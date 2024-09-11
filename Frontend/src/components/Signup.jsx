@@ -26,7 +26,12 @@ function Signup() {
         console.log(res.data);
         if (res.data) {
           toast.success("Signup Successfully");
-          navigate(from, { replace: true });
+          // navigate(from, { replace: true });
+          if (from) {
+            navigate(from, { replace: true });
+          } else {
+            toast.error("Signup failed: No data returned.");
+          }
         }
         localStorage.setItem("Users", JSON.stringify(res.data.user));
       })
@@ -37,6 +42,7 @@ function Signup() {
         }
       });
   };
+
   return (
     <>
       <div className="flex h-screen items-center justify-center">
