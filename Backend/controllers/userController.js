@@ -6,6 +6,7 @@ export const signup = async (req, res) => {
         let {fullname, email, password} = req.body;
 
         const user = await User.findOne({email});
+
         if(user) {
             return res.status(400).json({message: "user exist already"});
         }
@@ -13,17 +14,16 @@ export const signup = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password,salt);
 
-        const createdUser = new User({
+        const createdUser = await User.create({
             fullname,
             email,
             password : hashPassword
         })
 
-        await createdUser.save();
         res.status(200).json({message: "user create successfully", user:{
-            id: user._id,
-            fullname: user.fullname,
-            email: user.email
+            id: createdUser._id,
+            fullname: createdUser.fullname,
+            email: createdUser.email
         }});
     } catch (error) {
         console.log("error : "+ error.message);      
