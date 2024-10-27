@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row my-20">
+    <div className=" max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row mt-40 mb-20">
       <section className="bg-gray-100 text-gray-900 p-8">
         <div className="container mx-auto">
           <h1 className="text-4xl font-bold mb-4">About Us</h1>
